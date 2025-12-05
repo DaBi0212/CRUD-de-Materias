@@ -3,7 +3,7 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: true,
-  apiUrl: 'https://backend-crud-de-materias.onrender.com/api/',
-  url_api: 'https://backend-crud-de-materias.onrender.com/api/',
+  production: false,
+  apiUrl: 'http://localhost:8000/api/',
+  url_api: 'http://localhost:8000/api/',
 };

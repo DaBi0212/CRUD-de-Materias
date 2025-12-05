@@ -1,5 +1,5 @@
 export const environment = {
-  production: false,
-  apiUrl: 'http://localhost:8000/api/',
-  url_api: 'http://localhost:8000/api/',
+  production: true,  // Cambiar a true
+  apiUrl: 'https://backend-crud-de-materias.onrender.com/api/',
+  url_api: 'https://backend-crud-de-materias.onrender.com/api/',
 };
