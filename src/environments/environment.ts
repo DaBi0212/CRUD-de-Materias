@@ -2,7 +2,12 @@
 // `ng build` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 
+//export const environment = {
+//  production: false,
+//  url_api: "http://127.0.0.1:8000"
+//};
+
 export const environment = {
   production: false,
-  url_api: "http://127.0.0.1:8000"
+  apiUrl: 'https://davyb.pythonanywhere.com/api/',  // Probar con el backend remoto
 };
