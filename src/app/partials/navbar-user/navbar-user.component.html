@@ -1,0 +1,152 @@
+<div class="navbar-sidebar-wrapper">
+  <nav class="scoop-side-navbar" *ngIf="!isMobileView">
+    <ul class="scoop-navbar-list">
+      <li *ngIf="canSeeRegisterItem()" routerLink="/registro-usuarios" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">person_add</span>
+        <span>Registro</span>
+      </li>
+      <li *ngIf="canSeeAdminItems()" routerLink="/administrador" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">admin_panel_settings</span>
+        <span>Admins</span>
+      </li>
+      <li *ngIf="canSeeTeacherItems()" routerLink="/maestros" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">people</span>
+        <span>Maestros</span>
+      </li>
+      <li *ngIf="canSeeStudentItems()" routerLink="/alumnos" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">school</span>
+        <span>Alumnos</span>
+      </li>
+      <li *ngIf="canSeeStudentItems()" routerLink="/graficas" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">bar_chart</span>
+        <span>Gráficas</span>
+      </li>
+
+      <!-- Materias como acordeón -->
+      <li *ngIf="isAdmin()" class="scoop-navbar-parent-item">
+        <div class="scoop-navbar-item accordion-header" (click)="toggleMateriasMenu(); $event.stopPropagation()">
+          <span class="material-icons">book</span>
+          <span>Materias</span>
+          <span class="material-icons dropdown-arrow">{{ materiasMenuOpen ? 'expand_less' : 'expand_more' }}</span>
+        </div>
+
+        <!-- Contenido del acordeón -->
+        <ul class="accordion-content" [class.open]="materiasMenuOpen">
+          <li (click)="navigateToRegistroMaterias(); closeSidebar(); $event.stopPropagation()" class="accordion-item">
+            <span class="material-icons">add_circle</span>
+            <span>Registro de Materias</span>
+          </li>
+          <li (click)="navigateToListaMaterias(); closeSidebar(); $event.stopPropagation()" class="accordion-item">
+            <span class="material-icons">list</span>
+            <span>Lista de Materias</span>
+          </li>
+        </ul>
+      </li>
+
+      <li *ngIf="isTeacher()" routerLink="/lista-materias" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">list</span>
+        <span>Lista de Materias</span>
+      </li>
+      <li *ngIf="canSeeTeacherItems()" routerLink="/eventos-academicos" routerLinkActive="active" class="scoop-navbar-item">
+        <span class="material-icons">event</span>
+        <span>Eventos Académicos</span>
+      </li>
+    </ul>
+
+    <button class="scoop-logout-btn" (click)="logout()">
+      <span class="material-icons">logout</span>
+      <span>Cerrar sesión</span>
+    </button>
+  </nav>
+
+  <nav class="scoop-navbar">
+    <button class="dashboard-toggle-btn" *ngIf="isMobileView" (click)="toggleSidebar()" aria-label="Abrir menú">
+      <span class="material-icons">menu_open</span>
+    </button>
+    <span class="scoop-navbar-logo">BUAP</span>
+
+    <div class="scoop-navbar-icons">
+      <span class="material-icons navbar-icon" (click)="togglePalette()" style="cursor:pointer" title="Cambiar tema">palette</span>
+
+      <div style="position: relative; margin-left: 1rem;">
+        <div class="scoop-navbar-avatar" (click)="toggleUserMenu()" *ngIf="userInitial">
+          {{ userInitial }}
+        </div>
+
+        <div class="scoop-user-menu" *ngIf="showUserMenu" (click)="$event.stopPropagation()">
+          <button class="scoop-user-menu-btn" (click)="editUser()">
+            <span class="material-icons">edit</span>
+            <span>Editar perfil</span>
+          </button>
+          <button class="scoop-user-menu-btn" (click)="logout()">
+            <span class="material-icons">logout</span>
+            <span>Cerrar sesión</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <ng-container *ngIf="isMobileView">
+    <div class="mobile-sidebar-overlay" [ngClass]="{'mobile-open': mobileOpen}" (click)="closeSidebar()"></div>
+    <nav class="scoop-side-navbar" [ngClass]="{'mobile-open': mobileOpen}">
+      <ul class="scoop-navbar-list">
+
+        <li *ngIf="canSeeRegisterItem()" routerLink="/registro-usuarios" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">person_add</span>
+          <span>Registro</span>
+        </li>
+        <li *ngIf="canSeeAdminItems()" routerLink="/administrador" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">admin_panel_settings</span>
+          <span>Admins</span>
+        </li>
+        <li *ngIf="canSeeTeacherItems()" routerLink="/maestros" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">people</span>
+          <span>Maestros</span>
+        </li>
+        <li *ngIf="canSeeStudentItems()" routerLink="/alumnos" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">school</span>
+          <span>Alumnos</span>
+        </li>
+        <li *ngIf="canSeeStudentItems()" routerLink="/graficas" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">bar_chart</span>
+          <span>Gráficas</span>
+        </li>
+
+        <!-- Materias como acordeón (versión móvil) -->
+        <li *ngIf="isAdmin()" class="scoop-navbar-parent-item">
+          <div class="scoop-navbar-item accordion-header" (click)="toggleMateriasMenu(); $event.stopPropagation()">
+            <span class="material-icons">book</span>
+            <span>Materias</span>
+            <span class="material-icons dropdown-arrow">{{ materiasMenuOpen ? 'expand_less' : 'expand_more' }}</span>
+          </div>
+
+          <!-- Contenido del acordeón -->
+          <ul class="accordion-content" [class.open]="materiasMenuOpen">
+            <li (click)="navigateToRegistroMaterias(); closeSidebar(); $event.stopPropagation()" class="accordion-item">
+              <span class="material-icons">add_circle</span>
+              <span>Registro de Materias</span>
+            </li>
+            <li (click)="navigateToListaMaterias(); closeSidebar(); $event.stopPropagation()" class="accordion-item">
+              <span class="material-icons">list</span>
+              <span>Lista de Materias</span>
+            </li>
+          </ul>
+        </li>
+
+        <li *ngIf="isTeacher()" routerLink="/lista-materias" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">list</span>
+          <span>Lista de Materias</span>
+        </li>
+        <li *ngIf="canSeeTeacherItems()" routerLink="/eventos-academicos" routerLinkActive="active" class="scoop-navbar-item" (click)="closeSidebar()">
+          <span class="material-icons">event</span>
+          <span>Eventos Académicos</span>
+        </li>
+      </ul>
+      <button class="scoop-logout-btn" (click)="logout(); closeSidebar()">
+        <span class="material-icons">logout</span>
+        <span>Cerrar sesión</span>
+      </button>
+    </nav>
+  </ng-container>
+</div>

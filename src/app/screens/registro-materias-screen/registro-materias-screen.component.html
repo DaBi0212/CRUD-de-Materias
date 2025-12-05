@@ -1,0 +1,33 @@
+<div class="wrapper">
+  <div class="reg-shell">
+    <mat-card class="role-card">
+      <mat-card-header class="role-card-header">
+        <div class="actions-header-colum">
+          <ng-container *ngIf="!editar; else active">
+            <mat-card-title class="title-card">Registro de Materia</mat-card-title>
+            <mat-card-subtitle class="subtitle-card">
+              Ingresa los datos de la materia
+            </mat-card-subtitle>
+          </ng-container>
+          <ng-template #active>
+            <mat-card-title class="title-card">Edición de Materia</mat-card-title>
+            <mat-card-subtitle class="subtitle-card">
+              Modifica los datos de la materia seleccionada
+            </mat-card-subtitle>
+          </ng-template>
+        </div>
+        <!-- Botón regresar -->
+        <div class="actions-row">
+          <button mat-icon-button class="back-btn" (click)="goBack()">
+            <mat-icon class="back-icon">arrow_back</mat-icon>
+          </button>
+        </div>
+      </mat-card-header>
+    </mat-card>
+    <!-- Formulario de registro de materias -->
+    <div class="forms-area">
+      <app-registro-materias [datos_materia]="datos_materia"></app-registro-materias>
+    </div>
+  </div>
+</div>
+

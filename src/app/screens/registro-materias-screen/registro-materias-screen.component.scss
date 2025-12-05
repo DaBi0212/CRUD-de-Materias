@@ -1,0 +1,97 @@
+.wrapper {
+  margin: 0;
+  min-height: 100vh;
+  width: 100%;
+  background-image: url('/assets/images/fondo-azul.jpg');
+  background-position: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+body {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+.reg-shell {
+  display: grid;
+  gap: 20px;
+  padding: clamp(16px, 3vw, 28px);
+}
+
+/* Tarjeta de selección */
+.role-card {
+  width: min(100%, 980px);
+  margin-inline: auto;
+
+  .role-card-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 4px;
+    padding-bottom: 8px;
+  }
+
+  .actions-header-colum {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 2px;
+    width: 100%;
+  }
+
+  .title-card {
+    width: 100%;
+    font-family: Nexa-Bold, Arial, sans-serif;
+    font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem);
+    margin-bottom: 0.25rem;
+  }
+
+  .subtitle-card {
+    width: 100%;
+    font-family: Nexa-Light, Arial, sans-serif;
+    font-size: clamp(1rem, 0.8rem + 0.5vw, 1.25rem);
+    color: #000000;
+    margin-top: 1rem;
+  }
+}
+
+/* Botón regresar */
+.actions-row {
+  margin: 8px auto 0;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.back-btn {
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+}
+
+.back-icon {
+  width: auto !important;
+  height: auto !important;
+  font-size: 1.9rem;
+  color: #0092B8;
+}
+
+/* Área de formularios */
+.forms-area {
+  width: min(100%, 980px);
+  margin-inline: auto;
+}
+
+@media (max-width: 700px) {
+  .role-card {
+    padding: 15px;
+  }
+}
+
