@@ -17,7 +17,6 @@
     }
   ],
   "buildCommand": "npm run build",
-  "outputDirectory": "dist/<nombre-de-tu-proyecto>",
   "devCommand": "npm start",
   "framework": "angular"
 }
