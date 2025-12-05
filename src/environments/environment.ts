@@ -10,4 +10,5 @@
 export const environment = {
   production: false,
   apiUrl: 'https://davyb.pythonanywhere.com/api/',  // Probar con el backend remoto
+  url_api: 'https://davyb.pythonanywhere.com/api/',
 };
