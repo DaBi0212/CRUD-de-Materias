@@ -1,27 +1,75 @@
-# WebMovilEscolarWebapp
+# 🏫 Sistema de Gestión Escolar - Web App (Frontend)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.11.
+Este proyecto es una **Single Page Application (SPA)** desarrollada en **Angular** diseñada para la administración integral de una institución académica. Permite la gestión de usuarios (Administradores, Maestros, Alumnos), registro de materias con validación de horarios y visualización de estadísticas.
 
-## Development server
+## 🚀 Tecnologías y Herramientas
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+El proyecto utiliza un stack moderno basado en componentes y diseño reactivo:
 
-## Code scaffolding
+* **Framework:** Angular 15+
+* **Lenguaje:** TypeScript / SCSS
+* **UI Frameworks:** * Angular Material (Componentes visuales)
+    * Bootstrap 5 (Sistema de rejillas y utilidades)
+* **Librerías Clave:**
+    * `ngx-material-timepicker` (v5.5.3): Selección de horarios estilo reloj circular.
+    * `ng2-charts` / `chart.js`: Visualización de gráficas estadísticas.
+    * `ngx-mask`: Máscaras para inputs (teléfonos, fechas).
+    * `ngx-cookie-service`: Manejo de sesiones persistentes.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## 🛠 Funcionalidades Principales
 
-## Build
+1.  **Autenticación y Seguridad:**
+    * Login con validación de credenciales y tokens JWT.
+    * Guards para protección de rutas según roles.
+    * Layouts diferenciados (`AuthLayout` para login, `DashboardLayout` para el sistema).
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2.  **Gestión de Usuarios (CRUD):**
+    * Registro de Administradores, Maestros y Alumnos.
+    * Validaciones específicas (RFC para admins, CURP para alumnos).
+    * Tablas con paginación y filtros de búsqueda.
 
-## Running unit tests
+3.  **Módulo de Materias:**
+    * Registro con validación de **NRC único**.
+    * **Selector de Horario:** Implementación de lógica para validar que la hora de inicio sea menor a la hora fin.
+    * Asignación de días y profesores.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4.  **Dashboard Interactivo:**
+    * Gráficas de barras, líneas y pastel mostrando estadísticas de usuarios y eventos.
 
-## Running end-to-end tests
+## 📦 Instalación y Configuración
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Sigue estos pasos para levantar el proyecto en tu entorno local:
 
-## Further help
+### Prerrequisitos
+* Node.js (v16 o superior recomendado)
+* Angular CLI (`npm install -g @angular/cli`)
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+### Pasos
+1.  **Clonar el repositorio:**
+    ```bash
+    git clone <url-de-tu-repo>
+    cd app-movil-escolar-webapp
+    ```
+
+2.  **Instalar dependencias:**
+    *Nota: Se usan versiones específicas para evitar conflictos con Ivy.*
+    ```bash
+    npm install
+    ```
+
+3.  **Ejecutar el servidor de desarrollo:**
+    ```bash
+    ng serve
+    ```
+    La aplicación estará disponible en `http://localhost:4200/`.
+
+## 📂 Estructura del Proyecto
+
+```text
+src/app/
+├── layouts/          # Plantillas base (Auth y Dashboard)
+├── modals/           # Ventanas emergentes (Eliminar/Editar usuario)
+├── partials/         # Componentes reusables (Navbar, Sidebar, Formularios)
+├── screens/          # Vistas principales (Login, Home, Usuarios, Materias)
+├── services/         # Comunicación con API y Facade (Session)
+└── tools/            # Validadores y manejo de errores
